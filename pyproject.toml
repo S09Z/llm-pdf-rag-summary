@@ -1,0 +1,33 @@
+[project]
+name = "llm-pdf-rag-summary"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Ittichai Boonyarakthunya",email = "i.boonyarakthunya@gmail.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.11,<4.0"
+dependencies = [
+    "langchain (>=0.3.25,<0.4.0)",
+    "langchain-community (>=0.3.24,<0.4.0)",
+    "langchain-openai (>=0.3.19,<0.4.0)",
+    "sentence-transformers (>=4.1.0,<5.0.0)",
+    "chromadb (>=1.0.12,<2.0.0)",
+    "pypdf (>=5.6.0,<6.0.0)",
+    "streamlit (>=1.45.1,<2.0.0)",
+    "python-dotenv (>=1.1.0,<2.0.0)",
+    "google-api-python-client (>=2.171.0,<3.0.0)",
+    "google-auth-httplib2 (>=0.2.0,<0.3.0)",
+    "google-auth-oauthlib (>=1.2.2,<2.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.0"
+pytest-mock = "^3.14.1"
+
