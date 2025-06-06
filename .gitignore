@@ -6,6 +6,7 @@ chroma_db/
 __pycache__/
 *.pyc
 *.tmp
+*/temp/
 # เพิ่มไฟล์หรือโฟลเดอร์อื่นๆ ที่ไม่ต้องการให้ Git track
 
 .venv
