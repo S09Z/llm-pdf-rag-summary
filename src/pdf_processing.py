@@ -118,7 +118,6 @@ def load_pdf(file_path: str) -> List[Document]: # ฟังก์ชันนี
         print(f"Error loading PDF {os.path.basename(file_path)}: {e}")
         return []
 
-
 def chunk_documents(documents: List[Document], chunk_size: int = 1000, chunk_overlap: int = 200) -> List[Document]:
     """แบ่ง Document ออกเป็น Chunks เล็กๆ."""
     text_splitter = RecursiveCharacterTextSplitter(

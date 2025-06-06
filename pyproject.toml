@@ -19,7 +19,14 @@ dependencies = [
     "python-dotenv (>=1.1.0,<2.0.0)",
     "google-api-python-client (>=2.171.0,<3.0.0)",
     "google-auth-httplib2 (>=0.2.0,<0.3.0)",
-    "google-auth-oauthlib (>=1.2.2,<2.0.0)"
+    "google-auth-oauthlib (>=1.2.2,<2.0.0)",
+    "rich (>=14.0.0,<15.0.0)",
+    "huggingface-hub (>=0.32.4,<0.33.0)",
+    "langchain-huggingface (>=0.2.0,<0.3.0)",
+    "plotly (>=6.1.2,<7.0.0)",
+    "scikit-learn (>=1.7.0,<2.0.0)",
+    "pandas (>=2.3.0,<3.0.0)",
+    "langchain-chroma (>=0.2.4,<0.3.0)"
 ]
 
 
@@ -31,3 +38,25 @@ build-backend = "poetry.core.masonry.api"
 pytest = "^8.4.0"
 pytest-mock = "^3.14.1"
 
+
+[tool.poe.tasks]
+
+# Task สำหรับสร้าง/อัปเดต Vector DB
+# รัน: poe index
+index = { cmd = "python src/vector_store_builder.py", help = "Build or update the vector store from PDFs in src/temp" }
+
+# Task สำหรับล้าง DB เก่าและสร้างใหม่ทั้งหมด
+# รัน: poe reindex
+reindex = { cmd = "python src/vector_store_builder.py --force-rebuild", help = "Force rebuild the vector store from scratch" }
+
+# Task สำหรับทดสอบระบบ Q&A ผ่าน command line
+# รัน: poe test-qa
+test-qa = { cmd = "python src/qa_system.py", help = "Test the QA system on the command line" }
+
+# Task สำหรับเปิด Web App
+# รัน: poe start
+start = { cmd = "streamlit run src/app.py", help = "Run the Streamlit web application" }
+
+# Task สำหรับล้างไฟล์ที่ถูกสร้างขึ้น (เหมือน 'make clean')
+# รัน: poe clean
+clean = { cmd = "rm -rf chroma_db src/__pycache__ .pytest_cache", help = "Clean up generated files and caches" }
