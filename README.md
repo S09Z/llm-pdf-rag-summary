@@ -89,7 +89,6 @@ llm-pdf-rag-summary/
 ระบบนี้แบ่งการทำงานออกเป็น 2 ส่วนหลักคือ **Indexing Pipeline** (การเตรียมข้อมูล) และ **Querying Pipeline** (การตอบคำถาม)
 
 ### 1. Indexing Pipeline (รันด้วย `poe index`)
-
 ```mermaid
 graph TD
     A[📄 PDF Files in /src/temp] --> B{1. Load & Chunk};
@@ -98,32 +97,36 @@ graph TD
     D --> E[💾 /chroma_db folder];
 
     subgraph "src/pdf_processor.py"
-        B
+    B
     end
 
     subgraph "HuggingFaceEmbeddings"
-        C
+    C
     end
 ```
 
 ### 2. Querying Pipeline (รันด้วย `poe query`)
-```
+```mermaid
 graph TD
     subgraph "User via Streamlit UI"
-        A[❓ User's Question]
+    A[❓ User's Question]
     end
 
     subgraph "RAG System (Backend)"
-        B{1. Convert Query to Vector};
-        C{2. Similarity Search};
-        D[📚 Retrieved Chunks];
-        E{3. Augment Prompt};
-        F[🧠 Ollama LLM];
-        G[💬 Final Answer];
+    B{1. Convert Query to Vector};
+    C{2. Similarity Search};
+    D[📚 Retrieved Chunks];
+    E{3. Augment Prompt};
+    F[🧠 Ollama LLM];
+    G[💬 Final Answer];
     end
 
     subgraph "Existing Vector Store"
-        VS[📦 ChromaDB]
+    VS[📦 ChromaDB]
+    end
+
+    subgraph "HuggingFaceEmbeddings"
+    B
     end
 
     A --> B;
@@ -134,10 +137,5 @@ graph TD
     D --> E;
     E --> F;
     F --> G;
-    
-    subgraph "HuggingFaceEmbeddings"
-        B
-    end
-
     G --> H[💻 Display on Streamlit UI];
 ```
